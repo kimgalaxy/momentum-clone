@@ -1,5 +1,5 @@
 body {
-  background-color: #ecf0f1;
+  background-color: #34495e;
 }
 
 .btn {
@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-  color: red;
+  color: #ecf0f1;
   transition: color .5s ease-in-out;
 }
 
