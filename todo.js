@@ -3,8 +3,18 @@ const toDoForm = document.querySelector(".js-toDoForm"),
     toDoList = document.querySelector(".js-toDoList");
 
 const TODOS_LS = "toDos"
+let toDos = [];
 
-const toDos = [];
+function deleteToDo(gogo) {
+    const btn = gogo.target;
+    const li = btn.parentNode;
+    toDoList.removeChild(li);
+    const cleanToDos = toDos.filter(function (toDo) {
+        return toDo.id !== parseInt(li.id)
+    });
+    toDos = cleanToDos;
+    saveToDos();
+}
 
 function saveToDos() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
@@ -14,6 +24,7 @@ function paintToDo(text) {
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     delBtn.innerText = "❌";
+    delBtn.addEventListener("click", deleteToDo);
     const span = document.createElement("span");
     span.innerText = text; //매우 중요, 이것을 잘못 입력하면 엔터를 쳐도 입력이 안된다. 
     const newId = toDos.length + 1;
